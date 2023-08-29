@@ -528,61 +528,60 @@ def get_data(name,original_format=False):
 
     elif name == "wiod2016":
 
-        file_list_edge = glob.glob(name2file_name[name] + "/*_edgelist.csv")
-        file_list_edge.sort()
-
-        df_list = []
-        for i in range(len(file_list_edge)):
-            year = int(file_list_edge[i].split("/")[-1].split("_")[0].strip("WIOT"))
-            df_tmp = pd.read_csv(file_list_edge[i],header=None)
-            df_tmp["time"] = year
-            df_list.append(df_tmp)
-
-        df_edges = pd.concat(df_list)
-        df_edges.columns = ["source","target","weight","time"]
-
-
-        file_list_index = glob.glob(name2file_name[name] + "*_index2nodes.csv")
-        file_list_index.sort()
-
-        df_list = []
-        for i in range(len(file_list_index)):
-            year = int(file_list_index[i].split("/")[-1].split("_")[0].strip("WIOT"))
-            df_tmp = pd.read_csv(file_list_index[i])
-            df_tmp["time"] = year
-            df_list.append(df_tmp)
-
-        df_nodes = pd.concat(df_list)
-        df_nodes.columns = ["node","name","time"]
+        #file_list_edge = glob.glob(name2file_name[name] + "/*_edgelist.csv")
+        #file_list_edge.sort()
+        #df_list = []
+        #for i in range(len(file_list_edge)):
+        #    year = int(file_list_edge[i].split("/")[-1].split("_")[0].strip("WIOT"))
+        #    df_tmp = pd.read_csv(file_list_edge[i],header=None)
+        #    df_tmp["time"] = year
+        #    df_list.append(df_tmp)
+        #df_edges = pd.concat(df_list)
+        #df_edges.columns = ["source","target","weight","time"]
+        #file_list_index = glob.glob(name2file_name[name] + "*_index2nodes.csv")
+        #file_list_index.sort()
+        #df_list = []
+        #for i in range(len(file_list_index)):
+        #    year = int(file_list_index[i].split("/")[-1].split("_")[0].strip("WIOT"))
+        #    df_tmp = pd.read_csv(file_list_index[i])
+        #    df_tmp["time"] = year
+        #    df_list.append(df_tmp)
+        #df_nodes = pd.concat(df_list)
+        #df_nodes.columns = ["node","name","time"]
+        
+        df_edges = pd.read_csv(name2file_name[name] + "wiod2016_all_edges.csv")
+        df_nodes = pd.read_csv(name2file_name[name] + "wiod2016_all_nodes.csv")
         data_dict.update({"df_nodes":df_nodes,"df_edges":df_edges})
+        
 
     elif name == "wiod2013":
-        file_list_edge = glob.glob(name2file_name[name] + "/*_edgelist.csv")
-        file_list_edge.sort()
+        #file_list_edge = glob.glob(name2file_name[name] + "/*_edgelist.csv")
+        #file_list_edge.sort()
 
-        df_list = []
-        for i in range(len(file_list_edge)):
-            year = int(file_list_edge[i].split("/")[-1].split("_")[0].strip("WIOT"))
-            df_tmp = pd.read_csv(file_list_edge[i],header=None)
-            df_tmp["time"] = year
-            df_list.append(df_tmp)
+        #df_list = []
+        #for i in range(len(file_list_edge)):
+        #    year = int(file_list_edge[i].split("/")[-1].split("_")[0].strip("WIOT"))
+        #    df_tmp = pd.read_csv(file_list_edge[i],header=None)
+        #    df_tmp["time"] = year
+        #    df_list.append(df_tmp)
 
-        df_edges = pd.concat(df_list)
-        df_edges.columns = ["source","target","weight","time"]
+        #df_edges = pd.concat(df_list)
+        #df_edges.columns = ["source","target","weight","time"]
 
+        #file_list_index = glob.glob(name2file_name[name] + "*_index2nodes.csv")
+        #file_list_index.sort()
 
-        file_list_index = glob.glob(name2file_name[name] + "*_index2nodes.csv")
-        file_list_index.sort()
+        #df_list = []
+        #for i in range(len(file_list_index)):
+        #    year = int(file_list_index[i].split("/")[-1].split("_")[0].strip("WIOT"))
+        #    df_tmp = pd.read_csv(file_list_index[i])
+        #    df_tmp["time"] = year
+        #    df_list.append(df_tmp)
 
-        df_list = []
-        for i in range(len(file_list_index)):
-            year = int(file_list_index[i].split("/")[-1].split("_")[0].strip("WIOT"))
-            df_tmp = pd.read_csv(file_list_index[i])
-            df_tmp["time"] = year
-            df_list.append(df_tmp)
-
-        df_nodes = pd.concat(df_list)
-        df_nodes.columns = ["node","name","time"]
+        #df_nodes = pd.concat(df_list)
+        #df_nodes.columns = ["node","name","time"]
+        df_edges = pd.read_csv(name2file_name[name] + "wiod2013_all_edges.csv")
+        df_nodes = pd.read_csv(name2file_name[name] + "wiod2013_all_nodes.csv")
         data_dict.update({"df_nodes":df_nodes,"df_edges":df_edges})
 
 
