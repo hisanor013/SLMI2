@@ -600,6 +600,7 @@ def get_data(name,original_format=False):
 
     elif name == "eth":
 
+        file_name = name2file_name[name]
         # Retrieve address unifer
         df_unifier = pd.read_csv(file_name  + "/all_ens_pairs.csv")
         address2node = dict()
@@ -638,16 +639,19 @@ def get_data(name,original_format=False):
             data_dict.update({"df_edges":df_edges,"df_edges_sub":df_edges_sub,"df_nodes_known":df_nodes_known})
 
     elif name == "bitcoinalpha":
+        file_name = name2file_name[name]
         df_edges = pd.read_csv(file_name + "soc-sign-bitcoinalpha.csv",header=None)
         df_edges.columns = ["source","target","weight","time"]
         data_dict.update({"df_edges":df_edges})
 
     elif name == "bitcoinotc":
+        file_name = name2file_name[name]
         df_edges = pd.read_csv(file_name + "soc-sign-bitcoinotc.csv",header=None)
         df_edges.columns = ["source","target","weight","time"]
         data_dict.update({"df_edges":df_edges})
 
     elif name == "uscourt":
+        file_name = name2file_name[name]
         df_edges = pd.read_csv(name2file_name[name] + "us_court_500_edges.csv")
         df_nodes = pd.read_csv(name2file_name[name] + "us_court_500_nodes.csv")
         data_dict.update({"df_edges":df_edges,"df_nodes":df_nodes})
