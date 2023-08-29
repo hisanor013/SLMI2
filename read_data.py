@@ -2,6 +2,7 @@ from util import *
 
 
 import os
+import glob
 path_data = os.getcwd()  + "/data/"
 
 
@@ -47,6 +48,7 @@ def get_data(name,original_format=False):
 
         # Load the .mat file
         import scipy.io
+        file_name = name2file_name[name]
         mat_data = scipy.io.loadmat(file_name)
 
         # Just return original data
@@ -75,6 +77,8 @@ def get_data(name,original_format=False):
 
         # Load the .mat file
         import scipy.io
+        
+        file_name = name2file_name[name]
         mat_data = scipy.io.loadmat(file_name)
 
         # Just return original data
@@ -103,6 +107,7 @@ def get_data(name,original_format=False):
 
         # Load the .mat file
         import scipy.io
+        file_name = name2file_name[name]
         mat_data = scipy.io.loadmat(file_name)
 
         # Just return original data
