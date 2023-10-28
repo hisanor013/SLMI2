@@ -15258,6 +15258,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="n">df_edges</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">cond</span> <span class="o">=</span> <span class="n">df_edges</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">df_edges</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
 <span class="n">df_edges</span> <span class="o">=</span> <span class="n">df_edges</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_edges</span> <span class="o">=</span> <span class="n">df_edges</span><span class="p">[[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="s2">&quot;target&quot;</span><span class="p">,</span><span class="s2">&quot;weight&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_edges</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15285,22 +15287,6 @@ We are going to use: enron
 
 </div>
 
-</div>
-
-</div><div id="cell-id=abf03c6f" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
 </div>
 
 </div><div id="cell-id=545889fd" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15416,6 +15402,7 @@ We are going to use: enron
     <span class="n">df_edges</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="s2">&quot;target&quot;</span><span class="p">,</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
     
 <span class="n">df_edges_2</span> <span class="o">=</span> <span class="n">df_edges</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="s2">&quot;target&quot;</span><span class="p">],</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
+
 <span class="n">df_edges_2</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_edges_2</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">df_edges_2</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_edges_2</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 
@@ -15440,7 +15427,7 @@ We are going to use: enron
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Number of original edges:108825
+<pre>Number of original edges:3007
 Number of unique undirected edges:2097
 </pre>
 </div>
@@ -15451,13 +15438,13 @@ Number of unique undirected edges:2097
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/tmp/ipykernel_32496/1950362300.py:16: SettingWithCopyWarning: 
+<pre>/tmp/ipykernel_41858/3747320424.py:17: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   df_edges_2[&#34;source&#34;] = df_edges_2[&#34;source&#34;].astype(str)
-/tmp/ipykernel_32496/1950362300.py:17: SettingWithCopyWarning: 
+/tmp/ipykernel_41858/3747320424.py:18: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -15571,8 +15558,8 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>CPU times: user 72.4 ms, sys: 80 µs, total: 72.5 ms
-Wall time: 70.5 ms
+<pre>CPU times: user 80.2 ms, sys: 4.03 ms, total: 84.3 ms
+Wall time: 79.3 ms
 </pre>
 </div>
 </div>
@@ -15718,8 +15705,8 @@ True
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>CPU times: user 192 ms, sys: 3.53 ms, total: 196 ms
-Wall time: 195 ms
+<pre>CPU times: user 192 ms, sys: 51 µs, total: 193 ms
+Wall time: 191 ms
 </pre>
 </div>
 </div>
@@ -15853,8 +15840,8 @@ Wall time: 195 ms
 <pre>Finished train_neg
 Finished valid_neg
 Finished test_neg
-CPU times: user 3.09 s, sys: 456 ms, total: 3.55 s
-Wall time: 2.91 s
+CPU times: user 2.97 s, sys: 382 ms, total: 3.36 s
+Wall time: 2.81 s
 </pre>
 </div>
 </div>
